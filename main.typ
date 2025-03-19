@@ -34,7 +34,6 @@
 
 Acknowledge ALL the people!
 
-#pagebreak()
 
 #show: prepare-preamble.with(header_title: header_title)
 
@@ -48,8 +47,6 @@ Este tese // <- sic
 #v(8pt)
 Palavras-chave: física (keywords em português)
 
-#pagebreak()
-
 
 #special-heading[Abstract]
 
@@ -58,16 +55,12 @@ This thesis is about something, I guess.
 #v(8pt)
 Keywords: physics
 
-#pagebreak()
-
 // Table of Contents
 #in-outline.update(true)
 
 #special-heading[Table of Contents]
 
 #outline(title:none, indent: auto)
-
-#pagebreak()
 
 
 // List of Figures
@@ -77,15 +70,11 @@ Keywords: physics
 
 #in-outline.update(false)
 
-#pagebreak()
-
 
 // List of Abbreviations
 #special-heading(outlined: true)[List of Abbreviations]
 
 #glossary(theme: my-theme, sort: true)
-
-#pagebreak()
 
 #show: prepare-thesis-body.with(header_title: header_title)
 
@@ -166,7 +155,6 @@ nascetur ridiculus mus. Mattis pellentesque id nibh tortor.
 // Note: Typst natively supports SGV images, just place them like any other image file
 How to make a #typst-logo document with vector images, where the text in the images has exactly the same font and size as in normal text? This article describes how this is done using the ‘PDF/EPS/PS + LaTeX’ output feature of Inkscape 0.48. Inkscape can export the graphics to PDF/EPS/PS, and the text to a LaTeX file. When the LaTeX file is input in the LaTeX document, the PDF/EPS/PS image is included with overlaid text. Because typesetting of the text is done by LaTeX, LaTeX commands can be used in images, such as writing equations, references and shorthand macros. 
 
-
 _(requires Inkscape version 0.48 or higher; this document discusses features up to Inkscape 0.49)_
 
 
@@ -235,12 +223,9 @@ if __name__ == '__main__':
 Use acronyms like this: #h(6pt) @ANN, @RI:long
 // Acronyms should be defined in the glossary at the top of the document. The first time you @ reference an entry, it will spell it out with the long + (short) version. After that, just the short appears. Check glossy package docs for extra features
 
-#pagebreak()
 
 #special-heading(outlined: true)[References]
 #bibliography("Bibliography.bib", title: none, style: "ieee-with-url.csl")
-
-#pagebreak()
 
 #special-heading[Appendix Title Here]
 Write your Appendix content here.

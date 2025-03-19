@@ -9,6 +9,11 @@ You can read [this quick guide](https://typst.app/docs/guides/guide-for-latex-us
 
 **Disclaimer: this template was not created by the faculty.** I am just a student looking for a better solution, not affiliated with whoever makes such decisions officially.
 
+## Recently fixed
+- Level 1 Headings (chapters) and uses of `special-heading` now already include pagebreaks automatically
+- Header title has smaller spacing between lines for longer, multi-line titles. Use of linebreaks with "\" is encouraged
+- Fixed justification not applying to Abstract sections
+
 ## Currently not working
 
 - Not possible at the time to implement backreferences in the bibliography, to produce links to the pages in the document where the source was cited - ex: "[Cited on page 6]". This may be possible in the future

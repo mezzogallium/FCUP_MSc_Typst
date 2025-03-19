@@ -4,6 +4,7 @@
 #let typst-logo = text(rgb("#349cb4"), font: "libertinus serif", size: 13pt)[*typst*]
 
 #let special-heading(title, outlined: false) = { // isto precisa de ser corrigido
+pagebreak()
 show heading.where(
   level: 1
 ): it => block(width: 100%)[
@@ -79,7 +80,9 @@ heading(numbering: none, outlined: outlined)[#title]
     #align(right)[
       #grid(rows:2, columns: 2, row-gutter: 4pt, column-gutter: 6pt,
       [FCUP], grid.vline(start: 0, end: 2, stroke: 0.3pt), [#h(6pt) #context {
-        counter(page).display("i")}], header_title)]], header-ascent: 0.5cm, footer: none)
+        counter(page).display("i")}], 
+        par(leading: 3pt)[#header_title]
+      )]], header-ascent: 0.5cm, footer: none)
 
   set page(numbering: (..n) => context {
     if in-outline.get() {
@@ -88,6 +91,7 @@ heading(numbering: none, outlined: outlined)[#title]
       none
     }
   })
+  set par(justify: true)
   doc
 }
 
@@ -122,6 +126,7 @@ heading(numbering: none, outlined: outlined)[#title]
     counter(figure.where(kind: image)).update(0)
     counter(figure.where(kind: table)).update(0)
     counter(figure.where(kind: raw)).update(0)
+    pagebreak()
     it
   }
   set math.equation(numbering: (..num) =>
