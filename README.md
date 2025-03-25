@@ -10,6 +10,11 @@ You can read [this quick guide](https://typst.app/docs/guides/guide-for-latex-us
 **Disclaimer: this template was not created by the faculty.** I am just a student looking for a better solution, not affiliated with whoever makes such decisions officially.
 
 ## Recently fixed
+- Start of page numberings is now according to the original template (preamble starts at "ii" and body at "1")
+- Introduced `flex-caption` which allows you to shorten long figure captions for the outline
+- `in-outline` state is now handled in the template file, you no longer need the `#in-outline.update()` lines in your main.typ file 
+
+
 - Level 1 Headings (chapters) and uses of `special-heading` now already include pagebreaks automatically
 - Header title has smaller spacing between lines for longer, multi-line titles. Use of linebreaks with "\" is encouraged
 - Fixed justification not applying to Abstract sections
@@ -41,6 +46,7 @@ Used packages:
  - `block-quote([Quote], [Attribution])` - makes a quote block, right aligned, with a divider and attribution at the bottom
  - `displayquote[Quote]` - to make a centered block without attribution
  - `margin-note-s[Note text]` - makes a pre-formatted margin note
+ - `flex-caption(long: [], short: [])` - inserting in `caption:` argument of a figure allows you to define a long and a short version of the caption. The short will be used in the figure outline
 
 ## About
  

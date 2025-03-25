@@ -43,6 +43,8 @@ heading(numbering: none, outlined: outlined)[#title]
 
 #let in-outline = state("in-outline", false) // outline shenanigans
 
+#let flex-caption(long: none, short: none) = context if in-outline.get() { short } else { long } // allow short version of figure captions for outlines
+
 #let figure-outline(glossary, doc) = {
   show outline.entry: it => {
     show ref: r => {
@@ -91,13 +93,20 @@ heading(numbering: none, outlined: outlined)[#title]
       none
     }
   })
+  
   set par(justify: true)
+  show outline: it => {
+  in-outline.update(true)
+  it
+  in-outline.update(false)
+  }
+  counter(page).update(2)
   doc
 }
 
 #let prepare-thesis-body(header_title: [MyThesis Title], doc) = {
   
-  counter(page).update(1)
+  
 
   set page(header:[
     #set text(size: 8pt)
@@ -106,7 +115,7 @@ heading(numbering: none, outlined: outlined)[#title]
       [FCUP], grid.vline(start: 0, end: 2, stroke: 0.3pt), [#h(6pt) #context {
         counter(page).display("1")}], header_title)]], header-ascent: 0.5cm, 
   )
-
+  counter(page).update(1)
   set page(numbering: "1", footer: none)
 
   show heading: it => {

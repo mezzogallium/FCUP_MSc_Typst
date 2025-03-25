@@ -34,9 +34,7 @@
 
 Acknowledge ALL the people!
 
-
 #show: prepare-preamble.with(header_title: header_title)
-
 
 // Abstract
 #special-heading[Resumo]
@@ -56,8 +54,6 @@ This thesis is about something, I guess.
 Keywords: physics
 
 // Table of Contents
-#in-outline.update(true)
-
 #special-heading[Table of Contents]
 
 #outline(title:none, indent: auto)
@@ -67,8 +63,6 @@ Keywords: physics
 #special-heading(outlined: true)[List of Figures]
 
 #show: figure-outline.with(myGlossary)
-
-#in-outline.update(false)
 
 
 // List of Abbreviations
@@ -159,8 +153,11 @@ _(requires Inkscape version 0.48 or higher; this document discusses features up 
 
 
 #figure(
-  image("Img/image-normal.svg"), caption: [The test SVG image, as it is seen in Inkscape (exported to PDF without LaTeX option).]
+  image("Img/image-normal.svg"), caption: 
+  flex-caption(long: [The test SVG image, as it is seen in Inkscape (exported to PDF without LaTeX option).], short: [The test SVG image, as it is seen in Inkscape.])
 ) <SVG>
+
+// flex-caption allows you to define a short and a long version of a figure's caption. The short is shown in the figure outline.
 
 \
 $ E = m c^2 $
