@@ -2,7 +2,7 @@
 
 #show: template.with(
   // Fill in details:
-/* thesis_title: [],
+  /*thesis_title: [],
   thesis_author: [],
   year: [],
   supervisor: [],
@@ -14,66 +14,14 @@
   course_name: [],
   theme_fig: [], 
   Logo1: [], 
-  Logo2: [] */
+  Logo2: [], 
+  Acknowledge: [1],
+  Resumo: [],
+  palavras-chave: [],
+  Abstract: [],
+  keywords: [],
+  header-title: [],*/
   )
-
-#let header_title = [MyThesis Title] // Shorter title that appears in page headers
-
-#let myGlossary = (
-    ANN: (short: "ANN",
-          long: "Artificial Neural Network",
-          description: "This is not used"),
-    RI: (short: "RI",
-          long:"Refractive Index"),
-          // Add more entries
-)
-#show: init-glossary.with(myGlossary)
-
-// Acknowledgments
-#special-heading[Acknowledgments]
-
-Acknowledge ALL the people!
-
-#show: prepare-preamble.with(header_title: header_title)
-
-// Abstract
-#special-heading[Resumo]
-
-Este tese // <- sic
-é sobre alguma coisa
-
-#v(8pt)
-Palavras-chave: física (keywords em português)
-
-
-#special-heading[Abstract]
-
-This thesis is about something, I guess.
-
-#v(8pt)
-Keywords: physics
-
-// Table of Contents
-#special-heading[Table of Contents]
-
-#outline(title:none, indent: auto)
-
-
-// List of Figures
-#special-heading(outlined: true)[List of Figures]
-
-#show: figure-outline.with(myGlossary)
-
-
-// List of Abbreviations
-#special-heading(outlined: true)[List of Abbreviations]
-
-#glossary(theme: my-theme, sort: true)
-
-#show: prepare-thesis-body.with(header_title: header_title)
-
-
-// THESIS BODY START
 
 = Chapter Title Here
 

@@ -1,10 +1,11 @@
 #import "@preview/drafting:0.2.2": *
 #import "@preview/glossy:0.7.0": *
+#import "glossary.typ": myGlossary
 
 #let typst-logo = text(rgb("#349cb4"), font: "libertinus serif", size: 13pt)[*typst*]
 
 #let special-heading(title, outlined: false) = { // isto precisa de ser corrigido
-pagebreak()
+pagebreak(weak: true)
 show heading.where(
   level: 1
 ): it => block(width: 100%)[
@@ -93,21 +94,13 @@ heading(numbering: none, outlined: outlined)[#title]
       none
     }
   })
-  
   set par(justify: true)
-  show outline: it => {
-  in-outline.update(true)
-  it
-  in-outline.update(false)
-  }
+
   counter(page).update(2)
   doc
 }
 
 #let prepare-thesis-body(header_title: [MyThesis Title], doc) = {
-  
-  
-
   set page(header:[
     #set text(size: 8pt)
     #align(right)[
@@ -124,7 +117,7 @@ heading(numbering: none, outlined: outlined)[#title]
     [ #v(4pt)
       #block(strong[#counter(heading).display("1.") #h(0.9 * heading_sizes.at(it.depth -1)) #it.body])
       #v(8pt)
-    ]} else {[ #v(4pt)
+    ]} else {[ #v(6pt)
       #block([#counter(heading).display("1.") #h(0.9 * heading_sizes.at(it.depth -1)) #it.body])
       #v(8pt)
     ]}
@@ -183,7 +176,6 @@ heading(numbering: none, outlined: outlined)[#title]
 )
 
 
-
 #let template(
   thesis_title: [Insert the title of the dissertation, project or internship report, font Arial Bold, font size adjusted to the text box 12x12cm, left aligned],
   thesis_author: [Author’s name, Arial Plain, 18],
@@ -216,8 +208,15 @@ the \[course 's name\], Arial Plain, 12],
 
       #text(size: 10pt)[*[if applicable]*]
     ]],
+  Acknowledge: [Acknowledge ALL the people!],
+  Resumo: [Esta tese é sobre alguma coisa],
+  palavras-chave: [física (keywords em português)],
+  Abstract: [This thesis is about something, I guess.],
+  keywords: [physics],
+  header-title: [MyThesis Title],
   doc
 ) = {
+  
 set-margin-note-defaults(rect: rect.with(fill: rgb(255, 150, 150, 40), radius:2pt)) 
   
 set page(paper: "a4", margin: (top: 1.5cm, bottom: 1.5cm, left: 1.5cm, right: 0.08cm))
@@ -250,7 +249,7 @@ align(bottom)[
   #text(size: 10pt, year)
 ]
 )
-pagebreak()
+pagebreak(weak: true)
 
 //---------------------------------------------------------
 
@@ -285,6 +284,8 @@ align(bottom)[
     #Logo2
 ]])
 
+pagebreak(weak: true)
+
 counter(page).update(1)
 set page(margin: (top: 2.5cm, bottom: 2.5cm, left: 3cm, right: 3cm))
 
@@ -312,6 +313,63 @@ show outline.entry.where(level:1, ): it => {
   if it.body().fields() == "References" [Bibliography #box(width: 1fr, repeat[.]) #it.page] else {
   it}
 }
+
+show: init-glossary.with(myGlossary)
+
+// Acknowledgments
+special-heading[Acknowledgments]
+
+Acknowledge
+pagebreak(weak: true)
+
+show: prepare-preamble.with(header_title: header-title)
+
+// Abstract
+special-heading[Resumo]
+
+Resumo
+
+v(8pt)
+[Palavras-chave: #palavras-chave]
+
+pagebreak(weak: true)
+
+special-heading[Abstract]
+
+Abstract
+
+v(8pt)
+[Keywords: #keywords]
+
+pagebreak(weak: true)
+
+// Table of Contents
+in-outline.update(true)
+special-heading[Table of Contents]
+
+outline(title:none, indent: auto)
+
+pagebreak(weak: true)
+
+// List of Figures
+special-heading(outlined: true)[List of Figures]
+
+show: figure-outline.with(myGlossary)
+
+pagebreak(weak: true)
+
+// List of Abbreviations
+special-heading(outlined: true)[List of Abbreviations]
+
+glossary(theme: my-theme, sort: true)
+
+show: prepare-thesis-body.with(header_title: header-title)
+
+in-outline.update(false)
+
+pagebreak(weak: true)
+
+// THESIS BODY START
 
 doc
 }
