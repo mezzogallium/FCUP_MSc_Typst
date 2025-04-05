@@ -76,6 +76,36 @@ heading(numbering: none, outlined: outlined)[#title]
   doc
 }
 
+#let table-outline(glossary, doc) = {
+  show outline.entry: it => {
+    show ref: r => {
+      let entry_label = str(r.target).split(":")
+      let term = entry_label.at(0)
+      if term == "a" or term == "an" {
+        term = entry_label.at(1)
+      }
+      if term in glossary {
+          if "short" not in entry_label and "long" not in entry_label and "both" not in entry_label {
+            entry_label.push("short")
+            if "noref" not in entry_label {
+              entry_label.push("noref")
+              ref(label(entry_label.join(":")))
+            } else {ref(label(entry_label.join(":")))}
+          } else {
+            if "noref" not in entry_label {
+              entry_label.push("noref")
+              ref(label(entry_label.join(":")))
+            } else {r}
+            }
+      } else {r}
+    }
+      
+  block[#it.prefix().at("children").at(-1): #it.body()#box(width: 1fr, repeat[.]) #it.page()]}
+    
+  outline(title: none, target: figure.where(kind: table))
+  doc
+}
+
 
 #let prepare-preamble(header_title: [MyThesis Title], doc) = {
   set page(header:[
@@ -85,7 +115,7 @@ heading(numbering: none, outlined: outlined)[#title]
       [FCUP], grid.vline(start: 0, end: 2, stroke: 0.3pt), [#h(6pt) #context {
         counter(page).display("i")}], 
         par(leading: 3pt)[#header_title]
-      )]], header-ascent: 0.5cm, footer: none)
+      )]], header-ascent: 30%, footer: none)
 
   set page(numbering: (..n) => context {
     if in-outline.get() {
@@ -106,7 +136,7 @@ heading(numbering: none, outlined: outlined)[#title]
     #align(right)[
       #grid(rows:2, columns: 2, row-gutter: 4pt, column-gutter: 6pt,
       [FCUP], grid.vline(start: 0, end: 2, stroke: 0.3pt), [#h(6pt) #context {
-        counter(page).display("1")}], header_title)]], header-ascent: 0.5cm, 
+        counter(page).display("1")}], header_title)]], header-ascent: 30%, 
   )
   counter(page).update(1)
   set page(numbering: "1", footer: none)
@@ -208,12 +238,14 @@ the \[course 's name\], Arial Plain, 12],
 
       #text(size: 10pt)[*[if applicable]*]
     ]],
+  Dedication: [],
   Acknowledge: [Acknowledge ALL the people!],
   Resumo: [Esta tese é sobre alguma coisa],
-  palavras-chave: [física (keywords em português)],
+  palavras-chave: [keywords em português, up to 240 characters, including spaces (separated by a coma)],
   Abstract: [This thesis is about something, I guess.],
-  keywords: [physics],
+  keywords: [up to 240 characters, including spaces (separated by a coma)],
   header-title: [MyThesis Title],
+  show-table-list: true,
   doc
 ) = {
   
@@ -239,8 +271,10 @@ align(bottom)[
     #pad(align(right)[#image("Logos/FCUP.svg", width: 5.2cm)], right: 5pt )
 #v(0.3cm)
 #pad(align(right)[#image("Logos/FEUP.svg", width: 5.2cm)], right: 5pt )
-#v(0.6cm)
-#align(right)[#image("Logos/MSc.png", height: 124%)]
+#v(0.52cm)
+#align(top+right, place(dx: 0.37cm)[
+  #image("Logos/MSc.svg", height: 185%)
+  ])
 ],
 [ #text(size: 18pt, thesis_author)\
   #text(size: 12pt, course_name)\
@@ -316,6 +350,12 @@ show outline.entry.where(level:1, ): it => {
 
 show: init-glossary.with(myGlossary)
 
+// Dedication
+
+Dedication
+
+pagebreak(weak: true)
+
 // Acknowledgments
 special-heading[Acknowledgments]
 
@@ -350,6 +390,16 @@ special-heading[Table of Contents]
 outline(title:none, indent: auto)
 
 pagebreak(weak: true)
+
+// List of Tables
+
+if show-table-list {
+  special-heading(outlined: true)[List of Tables]
+  
+  show: table-outline.with(myGlossary)
+  
+  pagebreak(weak: true)
+}
 
 // List of Figures
 special-heading(outlined: true)[List of Figures]

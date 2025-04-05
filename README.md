@@ -10,6 +10,11 @@ You can read [this quick guide](https://typst.app/docs/guides/guide-for-latex-us
 **Disclaimer: this template was not created by the faculty.** I am just a student looking for a better solution, not affiliated with whoever makes such decisions officially.
 
 ## Recent changes
+- Added option for showing a List of Tables
+- Added option to write a Dedication
+- Improved header placement in page
+- Included math and mono fonts in folder
+- Replaced blurry png image for the "MSc" watermark on the cover with a crisp svg replica
 - Moved all the code for document setup to template file. Now acknowledgments and abstracts are template arguments. This makes the main file much cleaner
 - Created a glossary.typ file. Now abbreviations are to be listed here instead of the main file, so that it is quicker to add an entry while writing, without scrolling to top of doc and back
 - Compilation should be a bit faster
@@ -47,8 +52,6 @@ To use the template, all you need to do is fill in the details at the top of the
 
 If you don't want to use these features, just pass empty content `[]` or `none` to these arguments.
 
-
-
 Used packages:
 
  - [glossy](https://typst.app/universe/package/glossy/) >= 0.6.0 - for the Abbreviation list
@@ -65,9 +68,9 @@ Used packages:
 
 ## About
  
-The goal was to replicate the original layout as closely as possible, while maintaining the document "clean" enough. This was not always possible, but nevertheless an effort was made to keep most of the heavy-lifting and messy code out of the way, in a separate template file. The default content does not make much sense, since it is about LaTeX features. Nevertheless, you can still use it to learn how some things are done in Typst. 
+The goal was to replicate the original layout as closely as possible, while maintaining the document "clean" enough. This was not always possible, but nevertheless an effort was made to keep most of the heavy-lifting and messy code out of the way, in a separate template file. The default main.typ file does not make much sense, since it is about LaTeX features. Nevertheless, you can still use it to learn how some things are done in Typst. 
 
-Some things are not exactly the same, if you look hard enough. This is sometimes due to limitations, and others because the original template has very nonsensical layout choices and inconsistencies (page margins and indentations change for no reason between sections, the Bibliography is called "References" in the outline, etc...). 
+Some things are not exactly the same, if you look hard enough. This is sometimes due to limitations, and others because the original template has some obscure layout choices and inconsistencies. 
 
 Additionally, the citation style is not exactly the same. The LaTeX template uses a modified IEEEtran for use with specifically the natbib LaTeX package. Here I just used the default IEEE style, with URLs added.
 

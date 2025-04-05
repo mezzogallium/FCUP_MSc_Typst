@@ -1,8 +1,9 @@
 #import "fcup_template.typ": *
 
 #show: template.with(
-  // Fill in details:
-  /*thesis_title: [],
+  // Fill in:
+  /*
+  thesis_title: [],
   thesis_author: [],
   year: [],
   supervisor: [],
@@ -14,13 +15,16 @@
   course_name: [],
   theme_fig: [], 
   Logo1: [], 
-  Logo2: [], 
-  Acknowledge: [1],
+  Logo2: [],
+  Dedication: [],
+  Acknowledge: [],
   Resumo: [],
   palavras-chave: [],
   Abstract: [],
   keywords: [],
-  header-title: [],*/
+  header-title: [],
+  show-table-list: true
+  */
   )
 
 = Chapter Title Here
@@ -111,6 +115,23 @@ _(requires Inkscape version 0.48 or higher; this document discusses features up 
 $ E = m c^2 $
 
 \
+
+=== Tables
+
+You can also create tables, and show the Table list at the start of the document.
+
+#figure(
+  table(
+    columns: 3, rows: 2,
+    table.header("1", "2", "3"),
+    [A], [B], [C]
+  ),
+  caption: flex-caption(
+    short: [Short table caption],
+    long: [Looooooooooooong table caption]
+  )
+)
+
 ==== Automatic export
 
 (‘write18’ must be enabled, see the `epstopdf` package documentation. Add `-shell-escape` to the command line when calling `pdflatex`. #text(red)[And inkscape must be discoverable by the
