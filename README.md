@@ -12,6 +12,8 @@ You can read [this quick guide](https://typst.app/docs/guides/guide-for-latex-us
 ## Recent changes
 - Table of Contents now shows up on PDF file index
 - Entries in List of Tables and Figures now link to correct location in document
+- Figure captions are now justified
+- `#cite(form: "prose")` changed to use only last name of author (removed initials), e.g. Einstein [1]
 
 <details>
 <summary> 
