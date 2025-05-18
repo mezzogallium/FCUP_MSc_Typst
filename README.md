@@ -14,9 +14,10 @@ You can read [this quick guide](https://typst.app/docs/guides/guide-for-latex-us
 - Entries in List of Tables and Figures now link to correct location in document
 
 <details>
-<summary> ## Previous changes (from newer to older) </summary>
+<summary> 
+Previous changes (from newer to older) 
+</summary>
 <br>
-
 - Added option for showing a List of Tables
 - Added option to write a Dedication
 - Improved header placement in page
