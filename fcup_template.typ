@@ -4,7 +4,7 @@
 
 #let typst-logo = text(rgb("#349cb4"), font: "libertinus serif", size: 13pt)[*typst*]
 
-#let special-heading(title, outlined: false) = { // isto precisa de ser corrigido
+#let special-heading(title, outlined: false, bookmarked: true) = { // isto precisa de ser corrigido
 pagebreak(weak: true)
 show heading.where(
   level: 1
@@ -13,7 +13,7 @@ show heading.where(
   #it.body
   #v(0.8cm)
 ]
-heading(numbering: none, outlined: outlined)[#title]
+heading(numbering: none, outlined: outlined, bookmarked: bookmarked)[#title]
 }
 
 #let margin-note-s(content) = margin-note({ // wrapper fn for smaller text
@@ -69,9 +69,11 @@ heading(numbering: none, outlined: outlined)[#title]
             }
       } else {r}
     }
-      
-  block[#it.prefix().at("children").at(-1): #it.body()#box(width: 1fr, repeat[.]) #it.page()]}
-    
+  link(
+    it.element.location(),    
+    block[#it.prefix().at("children").at(-1): #it.body()#box(width: 1fr, repeat[.]) #it.page()]
+  )}
+  
   outline(title: none, target: figure.where(kind: image))
   doc
 }
@@ -99,8 +101,10 @@ heading(numbering: none, outlined: outlined)[#title]
             }
       } else {r}
     }
-      
-  block[#it.prefix().at("children").at(-1): #it.body()#box(width: 1fr, repeat[.]) #it.page()]}
+  link(
+    it.element.location(),
+    block[#it.prefix().at("children").at(-1): #it.body()#box(width: 1fr, repeat[.]) #it.page()]
+  )}
     
   outline(title: none, target: figure.where(kind: table))
   doc
@@ -168,12 +172,17 @@ heading(numbering: none, outlined: outlined)[#title]
     numbering("1.1", counter(heading).get().first(), num.pos().first()))
   
   show figure.caption: it =>{ 
-  set par(leading: 0.60em, justify: false)
+  set par(leading: 0.60em, justify: true)
   box(width: 86%, align(left)[#text(10pt, it)])
 }
-    
-  set par(justify: true)
 
+  show cite.where(form: "prose"): it => {
+    show regex("[A-Z]\. "): none
+    it
+  }
+  
+  set par(justify: true)
+  
   doc
 }
 
@@ -385,7 +394,7 @@ pagebreak(weak: true)
 
 // Table of Contents
 in-outline.update(true)
-special-heading[Table of Contents]
+special-heading(outlined: false, bookmarked: true)[Table of Contents]
 
 outline(title:none, indent: auto)
 

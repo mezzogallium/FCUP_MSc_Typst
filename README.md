@@ -10,6 +10,13 @@ You can read [this quick guide](https://typst.app/docs/guides/guide-for-latex-us
 **Disclaimer: this template was not created by the faculty.** I am just a student looking for a better solution, not affiliated with whoever makes such decisions officially.
 
 ## Recent changes
+- Table of Contents now shows up on PDF file index
+- Entries in List of Tables and Figures now link to correct location in document
+
+<details>
+<summary> ## Previous changes (from newer to older) </summary>
+<br>
+
 - Added option for showing a List of Tables
 - Added option to write a Dedication
 - Improved header placement in page
@@ -17,15 +24,14 @@ You can read [this quick guide](https://typst.app/docs/guides/guide-for-latex-us
 - Replaced blurry png image for the "MSc" watermark on the cover with a crisp svg replica
 - Moved all the code for document setup to template file. Now acknowledgments and abstracts are template arguments. This makes the main file much cleaner
 - Created a glossary.typ file. Now abbreviations are to be listed here instead of the main file, so that it is quicker to add an entry while writing, without scrolling to top of doc and back
-- Compilation should be a bit faster
-
-### Previously
 - Start of page numberings is now according to the original template (preamble starts at "ii" and body at "1")
 - Introduced `flex-caption` which allows you to shorten long figure captions for the outline
 - `in-outline` state is now handled in the template file, you no longer need the `#in-outline.update()` lines in your main.typ file 
 - Level 1 Headings (chapters) and uses of `special-heading` now already include pagebreaks automatically
 - Header title has smaller spacing between lines for longer, multi-line titles. Use of linebreaks with "\" is encouraged
 - Fixed justification not applying to Abstract sections
+
+</details>
 
 ## Currently not working
 
@@ -39,6 +45,7 @@ If you use the [typst.app](typst.app) web app, create a new project and upload a
 ### Locally
 If you are using typst locally (with Tinymist in VS Code, for example), the necessary packages are auto-fetched. 
 You need, however, to install the following fonts on your system:
+
 - [TeX Gyre Pagella Math](https://www.gust.org.pl/projects/e-foundry/tg-math/download/index_html#Pagella_Math) - for math/equations
 - New Computer Modern Mono, found in [this package's font folder](https://ctan.org/pkg/newcomputermodern) - for code/raw text 
 
